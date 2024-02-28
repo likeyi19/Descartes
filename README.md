@@ -26,27 +26,14 @@ Python packages required by Cofea are listed below:
 ```
 1. Python 3.8.18
 2. Packages for Descartes and tutorial
-  anndata==0.8.0
-  episcanpy==0.3.2
-  h5py==3.7.0
-  hdf5storage==0.1.18
-  jupyter-contrib-core==0.4.0
-  loess==2.1.2
-  louvain==0.7.1
-  matplotlib==3.5.2
-  matplotlib-inline==0.1.3
-  memory-profiler==0.61.0
-  numba==0.55.2
-  numpy==1.22.4
-  pandas==1.4.3
-  patsy==0.5.2
-  progress==1.6
-  scanpy==1.9.1
-  scikit-learn==1.1.1
-  scipy==1.8.1
-  seaborn==0.11.2
-  statsmodels==0.13.2
-  umap-learn==0.5.3
+  anndata >= 0.9.2
+  matplotlib >= 3.7.4
+  numpy >= 1.22.4
+  pandas >= 1.4.3
+  scanpy == 1.9.6
+  scikit-learn >= 1.3.0
+  scipy >= 1.8.0
+  seaborn >= 0.12.2
 ```
 
 Install the package and other requirements:
@@ -84,16 +71,41 @@ usage: descartes.py [-h] [-fp FILE_PATH] [-sp SAVE_PATH] [-n NUM_SELECT_PEAK]
                     [-nb NEIGHBOR] [-spd SP_DIST] [-ps PRE_SELECT]
                     [-pn PEAKS_NUM] [-d DISTANCE] [-r RATIO]
 
-
+optional arguments:
+  -h, --help            show this help message and exit
+  -fp FILE_PATH, --file_path FILE_PATH
+                        The path of dataset
+  -sp SAVE_PATH, --save_path SAVE_PATH
+                        The save path for results
+  -n NUM_SELECT_PEAK, --num_select_peak NUM_SELECT_PEAK
+                        The chosen number of peaks, defaults to 10000
+  -sb SEED_BASE, --seed_base SEED_BASE
+                        The random seed
+  -tf TF_IDF, --TF_IDF TF_IDF
+                        The TF-IDF computation method
+  -pc PC_NUMBER, --pc_number PC_NUMBER
+                        The number of principal components
+  -k K_NUMBER, --k_number K_NUMBER
+                        The quantity of K means
+  -s SIMILARITY, --similarity SIMILARITY
+                        The similarity calculation method
+  -iter ITER_TIME, --iter_time ITER_TIME
+                        The iteration count, defaults to 4
+  -spm SP_METHOD, --sp_method SP_METHOD
+                        The spatial neighborhood selection approach
+  -nb NEIGHBOR, --neighbor NEIGHBOR
+                        The number of neighbors
+  -spd SP_DIST, --sp_dist SP_DIST
+                        The spatial strategy for score calculation
+  -ps PRE_SELECT, --pre_select PRE_SELECT
+                        Peak filtering method
+  -pn PEAKS_NUM, --peaks_num PEAKS_NUM
+                        The quantity of peak filtering
+  -d DISTANCE, --distance DISTANCE
+                        The distance calculation method
+  -r RATIO, --ratio RATIO
+                        Data synthesis ratio
 ```  
-
-### Analysis
-
-From the perspective of revealing biological insights, we evaluated Cofea via several numeric experiments including cell type-specific peaks annotation and candidate enhancers identification.
-
-![image]()
-
-We provide a [notebook]() to analyze the sample dataset.
 
 ## Contact 
 If you have any questions, you can contact me from the email: <lky23@mails.tsinghua.edu.cn>

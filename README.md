@@ -62,26 +62,26 @@ $ pip install -r requirements.txt
 
 ### Demo
 
-We provide a [quick-start notebook]() notebook which describes the fundamentals in detail and reproduces the results of Cofea.
+We provide a [quick-start notebook](https://github.com/likeyi19/Descartes/blob/main/code/demo.ipynb) which describes the fundamentals in detail and reproduces the results of Cofea.
 
 ### Descartes
 
-Six parameters are required, including the path of dataset, TFIDF implementation method, number of PCS, correlation coefficient calculation method, number of selected features, and random seed. TFIDF is 'tfidf2' by default, the number of PCS is 100 by default, and the correlation coefficient is 'PCC' by default.
+Sixteen parameters are necessary, including the path of dataset, the save path for results, the chosen number of peaks, the random seed, the TF-IDF computation method, the number of principal components (PC), the quantity of K means, the similarity calculation method, the iteration count, the spatial neighborhood selection approach, the number of neighbors, the peak filtering method, the quantity of peak filtering, the distance calculation method, and the data synthesis ratio.
 
 For exsample:
 ```
 $ cd code/
-$ python cofea.py -l ../data/scanpy.h5ad  -n 20000 -s 2
+$ python descartes.py -fp ../data/scanpy.h5ad -sp ../result -n 10000 -sb 1 -pc 10 -k 20 -iter 4 -nb 5 -r 0.4
 $ cd ..
 ```
 
 Or you can get help in this way:
 ```  
-$ python code/cofean.py -h
-usage: cofea.py [-h] 
-                [-l LOAD_PATH] 
-                [-t TFIDF] 
-                [-p PC] 
+$ python code/descartes.py -h
+usage: descartes.py [-h] 
+                [-fp file_path] 
+                [-sp save_path] 
+                [-n PC] 
                 [-c CORR] 
                 [-n SELECT_NUMBER] 
                 [-s SEED_BASE]

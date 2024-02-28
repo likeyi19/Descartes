@@ -66,7 +66,7 @@ We provide a [quick-start notebook](https://github.com/likeyi19/Descartes/blob/m
 
 ### Descartes
 
-Sixteen parameters are necessary, including the path of dataset, the save path for results, the chosen number of peaks, the random seed, the TF-IDF computation method, the number of principal components (PC), the quantity of K means, the similarity calculation method, the iteration count, the spatial neighborhood selection approach, the number of neighbors, the peak filtering method, the quantity of peak filtering, the distance calculation method, and the data synthesis ratio.
+Sixteen parameters are necessary, including the path of dataset, the save path for results, the chosen number of peaks, the random seed, the TF-IDF computation method, the number of principal components (PC), the quantity of K means, the similarity calculation method, the iteration count, the spatial neighborhood selection approach, the number of neighbors, the spatial strategy for score calculation, the peak filtering method, the quantity of peak filtering, the distance calculation method, and the data synthesis ratio.
 
 For exsample:
 ```
@@ -78,28 +78,13 @@ $ cd ..
 Or you can get help in this way:
 ```  
 $ python code/descartes.py -h
-usage: descartes.py [-h] 
-                [-fp file_path] 
-                [-sp save_path] 
-                [-n PC] 
-                [-c CORR] 
-                [-n SELECT_NUMBER] 
-                [-s SEED_BASE]
+usage: descartes.py [-h] [-fp FILE_PATH] [-sp SAVE_PATH] [-n NUM_SELECT_PEAK]
+                    [-sb SEED_BASE] [-tf TF_IDF] [-pc PC_NUMBER] [-k K_NUMBER]
+                    [-s SIMILARITY] [-iter ITER_TIME] [-spm SP_METHOD]
+                    [-nb NEIGHBOR] [-spd SP_DIST] [-ps PRE_SELECT]
+                    [-pn PEAKS_NUM] [-d DISTANCE] [-r RATIO]
 
-optional arguments:
-  -h, --help           show this help message and exit
-  -l, --load_path      str, default=None
-                       storage path of the h5ad file, which contains the peak-by-cell data to be processed.
-  -t, --TFIDF          str, default='tfidf2', options=['tfidf1', 'tfidf2', 'tfidf3']
-                       TF-IDF implementation, 'tfidf1' represents the original version of TF-IDF transformation, 'tfidf2' indicates the TF-IDF transformation used by Signac, and 'tfidf3' represents the TF-IDF transformation used by scOpen.
-  -p, --PC             int, default=100
-                       Dimension of cell-wise PCA.
-  -c, --corr           str, default='PCC', options=['PCC', 'CSC', 'SPCC']
-                       Correlation coefficient calculation method. PCC represents Pearson correlation coefficient, CSC indicates Cosine correlation coefficient and SPCC represents Spearman correlation coefficient.
-  -n, --select_number  int, default=20000
-                       Number of selected features.
-  -s, --seed_base      int, default=2
-                       Random seed.
+
 ```  
 
 ### Analysis

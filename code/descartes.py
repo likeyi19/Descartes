@@ -59,11 +59,11 @@ if __name__ == '__main__':
     end_time = time.time()
 
     result = pd.DataFrame({'idx':idx})
-    filename = save_path + 'result_idx.csv'
+    filename = save_path + '/result_idx.csv'
     result.to_csv(filename,header=True)
 
     current_pid = os.getpid()
     peak_memory = get_peak_memory_usage(current_pid)
     run_time = end_time - start_time
     meta = pd.DataFrame({'Peak memory':[peak_memory], 'run time':[run_time]})
-    meta.to_csv(save_path + 'result_meta.csv',index=None)
+    meta.to_csv(save_path + '/result_meta.csv',index=None)

@@ -4,7 +4,7 @@
 
 abstract
 
-![image]()
+![image](https://github.com/likeyi19/Descartes/blob/main/inst/model.png)
 
 ## Installation  
 

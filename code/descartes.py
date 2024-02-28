@@ -26,6 +26,8 @@ if __name__ == '__main__':
     opt = parser.parse_args()
     file_path = opt.file_path
     save_path = opt.save_path
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
     num_select_peak = opt.num_select_peak
     seed_base = opt.seed_base
     tf = opt.TF_IDF

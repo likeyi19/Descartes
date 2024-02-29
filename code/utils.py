@@ -1073,7 +1073,7 @@ def peak_modules_(selected_peaks_data, similarity_matrix, method):
     return pdist
 
 
-def test_method_for_cluster(adata,idx,peak_distance,method,num_clusters = 10):
+def peak_module_cluster(adata,idx,peak_distance,method,num_clusters = 10):
 
     Z = sch.linkage(peak_distance, method=method) 
     dendrogram = sch.dendrogram(Z)

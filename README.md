@@ -53,9 +53,7 @@ $ pip install decare
 
 ## Tutorial
 
-### Demo
-
-We provide a [quick-start notebook](https://github.com/likeyi19/Descartes/blob/main/code/demo.ipynb) which describes the fundamentals in detail and reproduces the results of Cofea.
+We provide a [quick-start notebook](https://github.com/likeyi19/Descartes/blob/main/code/tutorial.ipynb) which describes the fundamentals in detail and reproduces the results of Cofea.
 
 ### Descartes
 

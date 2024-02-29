@@ -760,19 +760,26 @@ def run_descartes(anndatas,
         count_mat_test = anndatas.X.todense().T
         nfreqs = 1.0 * count_mat_test / np.tile(np.sum(count_mat_test,axis=0), (count_mat_test.shape[0],1))
         ATAC_count_test = np.multiply(nfreqs, np.tile(np.log(1 + 1.0 * count_mat_test.shape[1] / np.sum(count_mat_test,axis=1)).reshape(-1,1), (1,count_mat_test.shape[1])))
+        ATAC_count_test = np.array(ATAC_count_test)
+        ATAC_count_test = ATAC_count_test.T
     elif tfidf == "tfidf2":
         count_mat_test = anndatas.X.todense().T
         tf_mat = 1.0 * count_mat_test / np.tile(np.sum(count_mat_test,axis=0), (count_mat_test.shape[0],1))
         ATAC_count_test = np.log(1 + np.multiply(1e4*tf_mat,  np.tile((1.0 * count_mat_test.shape[1] / np.sum(count_mat_test,axis=1)).reshape(-1,1), (1,count_mat_test.shape[1]))))
-    else:
+        ATAC_count_test = np.array(ATAC_count_test)
+        ATAC_count_test = ATAC_count_test.T
+    elif tfidf == "tfidf3":
         count_mat_test = anndatas.X.todense().T
         model = TfidfTransformer(smooth_idf=False, norm="l2")
         model = model.fit(np.transpose(count_mat_test))
         model.idf_ -= 1
         tf_idf = np.transpose(model.transform(np.transpose(count_mat_test)))
         ATAC_count_test = tf_idf.todense()
-    ATAC_count_test = np.array(ATAC_count_test)
-    ATAC_count_test = ATAC_count_test.T
+        ATAC_count_test = np.array(ATAC_count_test)
+        ATAC_count_test = ATAC_count_test.T
+    else:
+        ATAC_count_test = anndatas.X.toarray()
+    
     count = ATAC_count_test.copy()
     print(count.shape)
     similarity_matrix_acb = np.zeros([count.shape[0], count.shape[0]])
@@ -1079,21 +1086,28 @@ def peak_module_cluster(adata,idx,peak_distance,method,num_clusters = 10):
     dendrogram = sch.dendrogram(Z)
     
     labels = sch.fcluster(Z, t=num_clusters, criterion='maxclust')
+
+    # 打印每个特征所属的聚类标签
     print("Cluster labels:", labels)
 
+    # 可视化层次聚类结果
     plt.title('Hierarchical Clustering Dendrogram')
     plt.xlabel('Peaks')
     plt.ylabel('Distance')
     plt.show()
 
+    # 统计每个数字出现的次数
     unique, counts = np.unique(labels, return_counts=True)
 
+    # 计算每个数字的占比
     total_samples = len(labels)
     proportions = counts / total_samples
 
+    # 打印每个数字的占比和次数
     for num, count, prop in zip(unique, counts, proportions):
         print(f"Number {num}: Count = {count}, Proportion = {prop:.2%}")
 
+    # 可视化结果
     plt.bar(unique, proportions)
     plt.xlabel('Number')
     plt.ylabel('Proportion')

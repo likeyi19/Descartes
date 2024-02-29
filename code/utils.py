@@ -24,6 +24,7 @@ import os
 
 from scipy.spatial.distance import pdist
 from multiprocessing import Pool
+import scipy.cluster.hierarchy as sch
 
 def tfidf2(count_mat): 
     tf_mat = 1.0 * count_mat / np.tile(np.sum(count_mat,axis=0), (count_mat.shape[0],1))
@@ -1064,3 +1065,53 @@ def run_leiden_(
         this_step += 1
         
     return
+
+
+def peak_modules_(selected_peaks_data, similarity_matrix, method):
+    pdist = np.matmul(np.matmul(selected_peaks_data.T, similarity_matrix), selected_peaks_data) \
+    +np.matmul(np.matmul(selected_peaks_data.T, similarity_matrix), selected_peaks_data)
+    return pdist
+
+
+def test_method_for_cluster(adata,idx,peak_distance,method,num_clusters = 10):
+
+    Z = sch.linkage(peak_distance, method=method) 
+    dendrogram = sch.dendrogram(Z)
+    
+    labels = sch.fcluster(Z, t=num_clusters, criterion='maxclust')
+    print("Cluster labels:", labels)
+
+    plt.title('Hierarchical Clustering Dendrogram')
+    plt.xlabel('Peaks')
+    plt.ylabel('Distance')
+    plt.show()
+
+    unique, counts = np.unique(labels, return_counts=True)
+
+    total_samples = len(labels)
+    proportions = counts / total_samples
+
+    for num, count, prop in zip(unique, counts, proportions):
+        print(f"Number {num}: Count = {count}, Proportion = {prop:.2%}")
+
+    plt.bar(unique, proportions)
+    plt.xlabel('Number')
+    plt.ylabel('Proportion')
+    plt.title('Proportion of Each Number')
+    plt.xticks(unique)
+    plt.show()
+    sc.pl.spatial(adata, color=['label'], spot_size=0.5)
+    ATAC_matrix = scale(np.array(adata.X.todense()))
+    coord_x = np.array(adata.obsm['spatial'][:,0])
+    coord_y = -np.array(adata.obsm['spatial'][:,1])
+    rand_num = 9999
+    for i in np.unique(labels):
+        print("Number of peaks in module %d: %d"%(i,counts[i-1]))
+        print("Visualize peak module of label %d:"%i)
+        index = (np.array(labels)==i)
+        color = np.mean(ATAC_matrix[:,idx[index]],axis = 1).squeeze()
+        print(rand_num)
+        plt.scatter(coord_x, coord_y, c=color, s=3, cmap='Blues')
+        plt.colorbar()
+        plt.show()
+    return Z, labels

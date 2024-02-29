@@ -736,20 +736,20 @@ def run_leiden(
         return score_all, clustering
 
 def run_descartes(anndatas,
-                select_num,              # 最后要选多少个peak
-                seed_base,               # 随机数种子
-                tfidf="tfidf2",          # tfidf的方法
-                ifPCA=True,              # 是否进行pca
+                select_num,
+                seed_base,
+                tfidf="tfidf2",
+                ifPCA=True,
                 pc=10,
                 k=20,
                 similarity="cosine",
                 iters=4,
-                PCA_select=False,        # 是否去除第一个pc
-                spmethod='threshold',          # 空间数据用什么方法构建相似矩阵
+                PCA_select=False,
+                spmethod='threshold',
                 neighbor=5,
-                sp_dist = 'recip',    # 距离的度量，const表示常数，recip表示倒数，recip_sq表述平方倒数
-                pre_select='highest',         # 预训练选择peak的方法
-                peaks_num=None,          # 预训练选择peak的数量
+                sp_dist = 'recip',
+                pre_select='highest',
+                peaks_num=None,
                 distance='euclidean',
                 cosine_filter=None,
                 r=0.4):
@@ -815,7 +815,6 @@ def run_descartes(anndatas,
             if PCA_select:
                 count = count[:,1:]
             print(count.shape)
-            #KNN算法默认使用欧几里得距离
             if similarity == 'Jaccard':
                 if distance == 'euclidean':
                     diff = count[:, np.newaxis, :] - count[np.newaxis, :, :]
@@ -879,7 +878,6 @@ def run_descartes(anndatas,
                 similarity_matrix_acb[similarity_matrix_acb < cosine_filter] = 0
         similarity_matrix = (1 - r) * similarity_matrix_acb + r*similarity_matrix_spatial
                     
-        #对所有peaks进行计算，这里是否考虑提前筛掉一些peaks
         print('compute scores')
         scores = np.zeros(anndatas.n_vars)
         #z-score
@@ -894,7 +892,6 @@ def run_descartes(anndatas,
 
     return selected_peaks, sorted_index, similarity_matrix, selected_peaks_all, scores, X_processed[:,selected_peaks], similarity_matrix_acb, similarity_matrix_spatial
 
-# 获取当前进程的 PID
 def get_peak_memory_usage(pid):
     """
     读取 /proc/[PID]/status 文件来获取进程的峰值内存占用（VmHWM）
@@ -902,7 +899,6 @@ def get_peak_memory_usage(pid):
     with open(f"/proc/{pid}/status") as f:
         for line in f:
             if "VmHWM" in line:
-                # 提取内存使用量并转换为 MB
                 return int(line.split()[1]) / 1024
             
 
@@ -1087,27 +1083,21 @@ def peak_module_cluster(adata,idx,peak_distance,method,num_clusters = 10):
     
     labels = sch.fcluster(Z, t=num_clusters, criterion='maxclust')
 
-    # 打印每个特征所属的聚类标签
     print("Cluster labels:", labels)
 
-    # 可视化层次聚类结果
     plt.title('Hierarchical Clustering Dendrogram')
     plt.xlabel('Peaks')
     plt.ylabel('Distance')
     plt.show()
 
-    # 统计每个数字出现的次数
     unique, counts = np.unique(labels, return_counts=True)
 
-    # 计算每个数字的占比
     total_samples = len(labels)
     proportions = counts / total_samples
 
-    # 打印每个数字的占比和次数
     for num, count, prop in zip(unique, counts, proportions):
         print(f"Number {num}: Count = {count}, Proportion = {prop:.2%}")
 
-    # 可视化结果
     plt.bar(unique, proportions)
     plt.xlabel('Number')
     plt.ylabel('Proportion')

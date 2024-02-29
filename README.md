@@ -51,6 +51,10 @@ Install descartes:
 $ pip install decare
 ```
 
+### Sample dataset download
+
+We provide a slice of mouse brain as a sample dataset, which can be downloaded at: [https://cloud.tsinghua.edu.cn/d/71c9840593464e9fa122/](https://cloud.tsinghua.edu.cn/d/71c9840593464e9fa122/)
+
 ## Tutorial
 
 We provide a [quick-start notebook](https://github.com/likeyi19/Descartes/blob/main/code/tutorial.ipynb) which describes the fundamentals in detail and reproduces the results of Cofea.

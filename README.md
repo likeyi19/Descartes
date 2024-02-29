@@ -48,7 +48,7 @@ $ pip install -r requirements.txt
 Install descartes:
 
 ```
-$ pip install descartesfunc
+$ pip install decare
 ```
 
 ## Tutorial

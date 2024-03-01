@@ -1,8 +1,6 @@
 # Descartes
 
-#### [DEtection of Spatial Chromatin Accessibility patteRns with inTEr-cellular correlationS]
-
-abstract
+We present Descartes, a graph-based model, for DEtection of Spatial Chromatin Accessibility patteRns with inTEr-cellular correlationS. Leveraging the graph of inter-cellular correlations, Descartes adeptly evaluates and identifies SV peaks by analyzing the self-correlations of peaks within the graph. To navigate the inherent challenge of highly dispersed accessibility patterns in spATAC-seq data, Descartes incorporate chromatin accessibility information with spatial locations during graph construction, and iteratively updates the graph to capture the intricate relationships between neighboring cells.
 
 <p align="center">
   <img src="https://github.com/likeyi19/Descartes/blob/main/inst/model.png" width="600" height="450" alt="image">

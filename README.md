@@ -5,7 +5,7 @@
 abstract
 
 <p align="center">
-  <img src="https://github.com/likeyi19/Descartes/blob/main/inst/model.png" width="400" height="300" alt="image">
+  <img src="https://github.com/likeyi19/Descartes/blob/main/inst/model.png" width="600" height="450" alt="image">
 </p>
 
 

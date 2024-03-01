@@ -4,7 +4,10 @@
 
 abstract
 
-![image](https://github.com/likeyi19/Descartes/blob/main/inst/model.png)
+<p align="center">
+  <img src="https://github.com/likeyi19/Descartes/blob/main/inst/model.png" width="400" height="300" alt="image">
+</p>
+
 
 ## Installation  
 

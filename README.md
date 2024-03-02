@@ -58,7 +58,7 @@ We provide a slice of mouse brain as a sample dataset, which can be downloaded a
 
 ## Tutorial
 
-We provide four Jupyter notebooks to demonstrate the function of our methods, including [SV peaks selection](https://github.com/likeyi19/Descartes/blob/main/code/SV%peaks%selection.ipynb), [Data imputation](https://github.com/likeyi19/Descartes/blob/main/code/Data%20imputation.ipynb), [Peak module identification](https://github.com/likeyi19/Descartes/blob/main/code/Peak%module%identification.ipynb), and [Gene-peak interaction detection](https://github.com/likeyi19/Descartes/blob/main/code/Gene-peak%interaction%detection.ipynb).
+We provide four Jupyter notebooks to demonstrate the function of our methods, including [SV peaks selection](https://github.com/likeyi19/Descartes/blob/main/code/SV%20peaks%20selection.ipynb), [Data imputation](https://github.com/likeyi19/Descartes/blob/main/code/Data%20imputation.ipynb), [Peak module identification](https://github.com/likeyi19/Descartes/blob/main/code/Peak%20module%20identification.ipynb), and [Gene-peak interaction detection](https://github.com/likeyi19/Descartes/blob/main/code/Gene-peak%20interaction%20detection.ipynb).
 
 ### Descartes
 
